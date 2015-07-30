@@ -2,6 +2,7 @@
 call plug#begin('~/.nvim/plugged')
 
 Plug 'mhinz/vim-sayonara'
+Plug 'dag/vim-fish'
 Plug 'shougo/deoplete.nvim'
 
 call plug#end()
