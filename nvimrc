@@ -113,7 +113,11 @@ augroup Neovim
   autocmd!
   " source on save and notify user
   autocmd BufWritePost $MYVIMRC source $MYVIMRC | echom "sourced " . $MYVIMRC
+  autocmd FileType vim setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
+augroup HTML 
+  autocmd FileType html setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
+augroup END
 " }}}
 
