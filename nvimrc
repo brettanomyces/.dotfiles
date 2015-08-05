@@ -48,6 +48,9 @@ set list
 " disable mouse
 set mouse=
 
+" yank to system clipboard
+set clipboard=unnamedplus
+
 " }}}
 
 " Plugin Settings {{{
