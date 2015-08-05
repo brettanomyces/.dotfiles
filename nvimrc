@@ -99,10 +99,15 @@ tnoremap <leader>" <c-\><c-n>:below split term://fish<cr>
 tnoremap <leader>% <c-\><c-n>:vertical rightbelow split term://fish<cr>
 nnoremap <leader>" :below split term://fish<cr>
 nnoremap <leader>% :vertical rightbelow split term://fish<cr>
-
 " }}}
 
 " Autocommands {{{
+
+" set format option in an autocmd or they will be overridden when you open a
+" new file
+augroup Formatting
+  autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+augroup END
 
 augroup Neovim 
   autocmd!
