@@ -6,7 +6,7 @@ function fd
     set dir '.'
   end
   set tmpFile /tmp/fd.tmp
-  find $dir -regex '.*/\.\(git\|svn\).*' -prune -o \
-    -maxdepth 5 -type d -print 2> /dev/null | fzf > $tmpFile; and cd (cat $tmpFile)
+  find -L $dir -regex '.*/\.\(git\|svn\).*' -prune -o  -maxdepth 5 -type d -print ^/dev/null | fzf > $tmpFile
+  and cd (cat $tmpFile)
   rm $tmpFile
 end
