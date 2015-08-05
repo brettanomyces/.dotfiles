@@ -1,6 +1,8 @@
 function fa
-   find /usr/share/applications/ -regex '.*.desktop' | fzf > /tmp/tmp; \
-     and exo-open (cat /tmp/tmp) >/dev/null ^/dev/null
+   set tmpFile /tmp/fa.tmp
+   find /usr/share/applications/ -regex '.*.desktop' | fzf > $tmpFile; \
+     and exo-open (cat $tmpFile) >/dev/null ^/dev/null
+   rm $tmpFile
 end
 
   
