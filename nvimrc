@@ -65,7 +65,6 @@ let g:deoplete#enable_at_startup=1
 " confirm before quitting vim
 let g:sayonara_confirm_quit=1
 
-
 " }}}
 
 " Mappings {{{
@@ -85,7 +84,7 @@ nnoremap <leader>c :Sayonara!<cr>
 " delete the current buffer and closes the current window.
 nnoremap <leader>x :Sayonara<cr>
 
-tnoremap <leader><esc> <c-\><c-n>
+noremap <leader><esc> <c-\><c-n>
 
 " navigate buffers using <CRTL-DIR>
 tnoremap <leader>h <c-\><c-n><c-w>h
