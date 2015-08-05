@@ -51,6 +51,10 @@ set mouse=
 " yank to system clipboard
 set clipboard=unnamedplus
 
+" open split below and to the right
+set splitbelow
+set splitright
+
 " }}}
 
 " Plugin Settings {{{
