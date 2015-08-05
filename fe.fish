@@ -7,8 +7,8 @@ function fe
     set dir '.'
   end
   set tmpFile /tmp/fe.tmp
-  find $dir -regex '.*/\.\(git\|svn\).*' -prune -o \
-    -maxdepth 15 -type f -print 2> /dev/null | fzf > $tmpFile ; and nvim (cat $tmpFile)
+  find -L $dir -regex '.*/\.\(git\|svn\).*' -prune -o  -maxdepth 15 -type f -print ^/dev/null | fzf > $tmpFile 
+  and nvim (cat $tmpFile)
   rm $tmpFile
 end
   
