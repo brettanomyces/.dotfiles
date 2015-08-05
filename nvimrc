@@ -86,7 +86,6 @@ nnoremap <leader>x :Sayonara<cr>
 
 noremap <leader><esc> <c-\><c-n>
 
-" navigate buffers using <CRTL-DIR>
 tnoremap <leader>h <c-\><c-n><c-w>h
 tnoremap <leader>l <c-\><c-n><c-w>l
 tnoremap <leader>j <c-\><c-n><c-w>j
