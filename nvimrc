@@ -84,8 +84,9 @@ nnoremap <leader>c :Sayonara!<cr>
 
 " delete the current buffer and closes the current window.
 nnoremap <leader>x :Sayonara<cr>
+tnoremap <leader>x <c-\><c-n>:Sayonara<cr>
 
-noremap <leader><esc> <c-\><c-n>
+tnoremap <leader><esc> <c-\><c-n>
 
 tnoremap <leader>h <c-\><c-n><c-w>h
 tnoremap <leader>l <c-\><c-n><c-w>l
