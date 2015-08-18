@@ -4,7 +4,7 @@ function fe
     # fish arrays start at 1
     set dir $argv[1]
   else
-    set dir '.'
+    set dir (pwd)
   end
   set tmpFile /tmp/fe.tmp
   find -L $dir -regex '.*/\.\(git\|svn\).*' -prune -o  -maxdepth 15 -type f -print ^/dev/null | fzf > $tmpFile 
