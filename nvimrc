@@ -13,7 +13,7 @@ call plug#end()
 " Settings {{{
 
 " use <c-a> as leader so we can use it in terminal window too
-let mapleader="\<c-b>"
+let mapleader="\<c-e>"
 
 set foldmethod=marker
 
@@ -80,11 +80,14 @@ nnoremap j gj
 nnoremap k gk
 
 " delete the current buffre but keep the current window
-nnoremap <leader>c :Sayonara!<cr>
+nnoremap <leader>cb :Sayonara!<cr>
+tnoremap <leader>cb <c-\><c-n>:Sayonara!<cr>
 
 " delete the current buffer and closes the current window.
-nnoremap <leader>x :Sayonara<cr>
-tnoremap <leader>x <c-\><c-n>:Sayonara<cr>
+nnoremap <leader>cw :Sayonara<cr>
+tnoremap <leader>cw <c-\><c-n>:Sayonara<cr>
+
+nnoremap ZZ :w<cr>:Sayonara!<cr>
 
 tnoremap <leader><esc> <c-\><c-n>
 
@@ -101,6 +104,7 @@ tnoremap <leader>" <c-\><c-n>:below split term://fish<cr>
 tnoremap <leader>% <c-\><c-n>:vertical rightbelow split term://fish<cr>
 nnoremap <leader>" :below split term://fish<cr>
 nnoremap <leader>% :vertical rightbelow split term://fish<cr>
+
 " }}}
 
 " Autocommands {{{
@@ -121,5 +125,10 @@ augroup END
 augroup HTML 
   autocmd FileType html setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
+
+" }}}
+
+" Functions {{{
+
 " }}}
 
