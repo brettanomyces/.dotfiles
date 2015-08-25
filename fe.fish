@@ -8,7 +8,7 @@ function fe
   end
   set tmpFile /tmp/fe.tmp
   find -L $dir -regex '.*/\.\(git\|svn\).*' -prune -o  -maxdepth 15 -type f -print ^/dev/null | fzf > $tmpFile 
-  and evalh "nvim" (cat $tmpFile)
+  and evalh $EDITOR (cat $tmpFile)
   rm $tmpFile
 end
   
