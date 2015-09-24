@@ -14,10 +14,11 @@ call plug#end()
 
 " Settings {{{
 
-" use <c-a> as leader so we can use it in terminal window too
+" use <c-e> as leader so we can use it in terminal window too
 let mapleader="\<c-e>"
 
 set foldmethod=marker
+
 " don't show vertical bar in split column
 set fillchars-=vert:\|
 
