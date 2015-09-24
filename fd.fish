@@ -6,7 +6,7 @@ function fd
     set dir (pwd)
   end
   set tmpFile /tmp/fd.tmp
-  find -L $dir -regex '.*/\.\(git\|svn\).*' -prune -o  -maxdepth 5 -type d -print ^/dev/null | fzf > $tmpFile
+  find -L $dir -regex '.*/\.\(git\|svn\).*' -prune -o  -maxdepth 9 -type d -print ^/dev/null | fzf > $tmpFile
   and evalh "cd" (cat $tmpFile)
   rm $tmpFile
 end
