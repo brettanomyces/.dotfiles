@@ -148,15 +148,19 @@ augroup Formatting
   autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 augroup END
 
-augroup Neovim 
+augroup Neovim
   autocmd!
   " source on save and notify user
   autocmd BufWritePost $MYVIMRC source $MYVIMRC | echom "sourced " . $MYVIMRC
   autocmd FileType vim setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
-augroup HTML 
+augroup HTML
   autocmd FileType html setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
+augroup END
+
+augroup SQL
+  autocmd FileType sql setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
 " }}}
