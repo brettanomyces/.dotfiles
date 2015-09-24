@@ -1,10 +1,12 @@
 " Plugins {{{
 call plug#begin('~/.nvim/plugged')
 
-Plug 'mhinz/vim-sayonara'
 Plug 'dag/vim-fish'
+Plug 'mhinz/vim-sayonara'
 Plug 'shougo/deoplete.nvim'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-sleuth'
 
 call plug#end()
 
