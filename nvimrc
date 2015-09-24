@@ -73,6 +73,13 @@ let g:sayonara_confirm_quit=1
 
 " }}}
 
+" Abbreviations {{{
+
+" use :close instead of :q to prevent exiting Neovim unintentionally, use :quit to quit
+cabbrev q <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'close' : 'q')<cr>
+
+" }}}
+
 " Mappings {{{
 
 nnoremap q: <nop>
