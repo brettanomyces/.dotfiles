@@ -7,6 +7,8 @@ Plug 'shougo/deoplete.nvim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sleuth'
+" Plug '~/Workspace/nvim-editcommand'
+Plug '~/Workspace/nvim-terminus'
 
 call plug#end()
 
@@ -71,6 +73,12 @@ let g:deoplete#enable_at_startup=1
 " confirm before quitting vim
 let g:sayonara_confirm_quit=1
 
+" let g:editcommand_prompt = '>'
+" let g:editcommand_no_mappings = 1
+" tmap <c-x> <Plug>EditCommand
+
+tmap <c-x> <Plug>TerminusEdit
+
 " }}}
 
 " Abbreviations {{{
@@ -118,13 +126,13 @@ nnoremap <leader>l <c-w>l
 nnoremap <leader>j <c-w>j
 nnoremap <leader>k <c-w>k
 
-tnoremap <leader><space> <c-\><c-n>:terminal<cr>
-tnoremap <leader>" <c-\><c-n>:below split term://fish<cr>
-tnoremap <leader>% <c-\><c-n>:vertical rightbelow split term://fish<cr>
+tnoremap <leader><space> <c-\><c-n>:TerminusOpen<cr>
+tnoremap <leader>" <c-\><c-n>:below split +TerminusOpen<cr>
+tnoremap <leader>% <c-\><c-n>:vertical rightbelow split +TerminusOpen<cr>
 
-nnoremap <leader><space> :terminal<cr>
-nnoremap <leader>" :below split term://fish<cr>
-nnoremap <leader>% :vertical rightbelow split term://fish<cr>
+nnoremap <leader><space> :TerminusOpen<cr>
+nnoremap <leader>" :below split +TerminusOpen<cr>
+nnoremap <leader>% :vertical rightbelow split +TerminusOpen<cr>
 
 " rename buffer, useful for renaming terminal buffers
 nnoremap <leader>f :call SetFileName()<cr>
