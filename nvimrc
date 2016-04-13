@@ -3,6 +3,7 @@ call plug#begin('~/.nvim/plugged')
 
 Plug 'dag/vim-fish'
 Plug 'mhinz/vim-sayonara'
+Plug 'mhinz/neovim-remote'
 Plug 'shougo/deoplete.nvim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -24,12 +25,17 @@ set foldmethod=marker
 " don't show vertical bar in split column
 set fillchars-=vert:\|
 
+" refrest screen less often
+set lazyredraw
+
 set incsearch
 set hlsearch
 set ignorecase
 set smartcase
+" don't wrap when searching file
+set nowrapscan
 
-" always show status ba
+" always show status bar
 set laststatus=2
 
 " show line and column in status bar
@@ -63,6 +69,9 @@ set splitright
 " allow unsaved buffers to be hidden
 set hidden
 
+" save backups to /tmp
+set backupdir=/tmp
+
 " }}}
 
 " Plugin Settings {{{
@@ -73,11 +82,15 @@ let g:deoplete#enable_at_startup=1
 " confirm before quitting vim
 let g:sayonara_confirm_quit=1
 
-" let g:editcommand_prompt = '>'
-" let g:editcommand_no_mappings = 1
-" tmap <c-x> <Plug>EditCommand
+" set scrollback buffer size to maximum
+let g:terminal_scrollback_buffer_size = 100000
 
-tmap <c-x> <Plug>TerminusEdit
+" nvim-editcommand
+let g:editcommand_prompt = '>'
+let g:editcommand_no_mappings = 1
+
+" nvim-terminus
+let g:terminus_default_mappings = 1
 
 " }}}
 
@@ -90,7 +103,7 @@ cabbrev q <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'close' : 'q')<cr>
 
 " Mappings {{{
 
-nnoremap q: <nop>
+" nnoremap q: <nop>
 nnoremap q/ <nop>
 nnoremap q? <nop>
 
@@ -102,6 +115,9 @@ nnoremap Y y$
 
 nnoremap j gj
 nnoremap k gk
+
+" avoid exiting nvim
+nnoremap ZZ <nop>
 
 " keep buffer, close window
 nnoremap <leader>c :close<cr>
@@ -116,6 +132,8 @@ nnoremap <leader>x :Sayonara<cr>
 tnoremap <leader>x <c-\><c-n>:Sayonara<cr>
 
 tnoremap <leader><esc> <c-\><c-n>
+" remap in normal mode to prevent <c-e> scrolling the screen
+nnoremap <leader><esc> <esc>
 
 tnoremap <leader>h <c-\><c-n><c-w>h
 tnoremap <leader>l <c-\><c-n><c-w>l
@@ -126,12 +144,16 @@ nnoremap <leader>l <c-w>l
 nnoremap <leader>j <c-w>j
 nnoremap <leader>k <c-w>k
 
+" open new terminal buffer
 tnoremap <leader><space> <c-\><c-n>:TerminusOpen<cr>
-tnoremap <leader>" <c-\><c-n>:below split +TerminusOpen<cr>
-tnoremap <leader>% <c-\><c-n>:vertical rightbelow split +TerminusOpen<cr>
-
 nnoremap <leader><space> :TerminusOpen<cr>
+
+" open new terminal buffer in horizontal split
+tnoremap <leader>" <c-\><c-n>:below split +TerminusOpen<cr>
 nnoremap <leader>" :below split +TerminusOpen<cr>
+
+" open new terminal buffer in vertical split
+tnoremap <leader>% <c-\><c-n>:vertical rightbelow split +TerminusOpen<cr>
 nnoremap <leader>% :vertical rightbelow split +TerminusOpen<cr>
 
 " rename buffer, useful for renaming terminal buffers
@@ -144,7 +166,6 @@ tnoremap <M-Right> <c-\><c-n>:bnext<cr>
 nnoremap <M-Left> :bprevious<cr>
 tnoremap <M-Left> <c-\><c-n>:bprevious<cr>
 
-nnoremap ZZ <nop>
 
 " }}}
 
@@ -154,6 +175,11 @@ nnoremap ZZ <nop>
 " new file
 augroup Formatting
   autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+augroup END
+
+augroup Scratch
+  autocmd!
+  autocmd BufWinEnter * if &buftype == 'nofile' | call DeopleteEnable | endif
 augroup END
 
 augroup Neovim
@@ -180,5 +206,17 @@ function! SetFileName()
   execute 'file ' . input('Enter name: ')
 endfunction
 
+" :Tail /path/to/file
+function! Tail(file)
+  enew
+  call termopen('tail --follow=name --retry ' . fnameescape(a:file))
+endfunction
+command! -nargs=1 Tail call Tail(<f-args>)
+
 " }}}
 
+" Commands {{{
+
+command! FormatJSON % !jq .
+
+"}}}

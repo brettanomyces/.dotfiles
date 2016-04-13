@@ -8,6 +8,7 @@ function fe
   end
   set tmpFile /tmp/fe.tmp
   find -L $dir -regex '.*/\.\(git\|svn\).*' -prune -o  -maxdepth 15 -type f -print ^/dev/null | fzf > $tmpFile 
+  # requires edit.fish
   and evalh edit (cat $tmpFile)
   rm $tmpFile
 end
