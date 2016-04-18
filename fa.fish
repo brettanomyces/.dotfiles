@@ -1,10 +1,10 @@
 function fa
    set tmpFile /tmp/fa.tmp
    begin
-     find /usr/share/applications/ -regex '.*\.desktop'
-     find /usr/local/share/applications/ -regex '.*\.desktop'
+     find /usr/share/applications/ -regex '.*\.desktop' ^/dev/null
+     find /usr/local/share/applications/ -regex '.*\.desktop' ^/dev/null
    end | fzf > $tmpFile 
-   and evalh "exo-open" (cat $tmpFile) ">/dev/null ^/dev/null"
+   and eval "exo-open" (cat $tmpFile) ">/dev/null ^/dev/null"
    rm $tmpFile
 end
 
