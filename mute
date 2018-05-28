@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+function mute {
+	pactl set-sink-mute 0 1
+	sleep "$1"
+	pactl set-sink-mute 0 0 
+}
+
+DURATION=45
+if [ $# -ne 0 ]
+then
+	DURATION="$1"
+fi
+echo "Muting audio for ""$DURATION"" seconds"
+
+(mute "$DURATION") &
